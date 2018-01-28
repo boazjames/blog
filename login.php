@@ -13,7 +13,6 @@ if(isset($_GET['id'])){
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style1.css" rel="stylesheet">
-    <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
   </head>
   <body>
       <div class="container-fluid">
@@ -22,7 +21,7 @@ if(isset($_GET['id'])){
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-              <h2 class="text-center"><img class="" src="./img/logo1.png"></h2>
+              <h2 class="text-center"><img class="" src="./img/logo3.png"></h2>
           </div>
         </div>
       </div>
