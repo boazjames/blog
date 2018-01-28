@@ -1,12 +1,13 @@
+<?php session_start(); ?>
 <?php if (!empty($_POST)) : ?>
     <?php
-    session_start();
+    date_default_timezone_set("Africa/Nairobi");
     include '../config/config.php';
     include '../libraries/Database.php';
     include '../helpers/format_helper.php';
     $db = new Database();
 
-
+    $date = date('Y-m-d H:i:s');
     $u_id = mysqli_real_escape_string($db->link, $_SESSION['u_id']);
     $query = "SELECT * FROM users WHERE user_id=" . $u_id;
     $user = $db->select($query)->fetch_assoc();
@@ -15,7 +16,7 @@
 
     $p_id = mysqli_real_escape_string($db->link, $_POST['id']);
     $msg = mysqli_real_escape_string($db->link, $_POST['msg']);
-    $query = "INSERT INTO comments(post_id, user_id, user_uid, user_image, comment) VALUES('$p_id','$u_id','$u_uid','$u_img','$msg')";
+    $query = "INSERT INTO comments(post_id, user_id, time, user_uid, user_image, comment) VALUES('$p_id','$u_id','$date','$u_uid','$u_img','$msg')";
 
     $insert_row = $db->insert($query);
 
@@ -27,17 +28,17 @@
     $comments = $db->select($query);
     ?>
     <div class="blog-comments" id="comments">
-    <?php
-    $query = "SELECT * FROM comments WHERE post_id=" . $postId;
-    $comments_total = $db->select($query);
-    if ($comments) {
-        $total = $comments_total->num_rows;
-    }
-    ?>
+        <?php
+        $query = "SELECT * FROM comments WHERE post_id=" . $postId;
+        $comments_total = $db->select($query);
+        if ($comments) {
+            $total = $comments_total->num_rows;
+        }
+        ?>
         <h3 class="title">(<?php echo $total; ?>) Comments</h3>
 
         <?php if ($comments) : ?>
-        <?php while ($row = $comments->fetch_assoc()) : ?>
+            <?php while ($row = $comments->fetch_assoc()) : ?>
 
                 <?php if ($row['comment']) : ?>
                     <!-- comment -->
@@ -65,7 +66,7 @@
                     <!-- /comment -->
 
 
-            <?php endif; ?>
+                <?php endif; ?>
 
             <?php endwhile; ?>
             <?php if ($total > 4) : ?>
@@ -73,8 +74,8 @@
                     <input name="post_id" hidden type="text" value="<?php echo $postId; ?>">
                     <button type="submit" id="show_all_cmt" class="btn btn-default">Show all comments</button>
                 </form>
-        <?php endif; ?>
-    <?php else : ?>
+            <?php endif; ?>
+        <?php else : ?>
             <div class="alert alert-info">Be the first to comment</div>
         <?php endif; ?>
 

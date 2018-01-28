@@ -1,8 +1,7 @@
 <?php session_start(); ?>
 <?php if(isset($_SESSION['ua_id'])) : ?>
 <?php
-?>
-<?php
+$date_default_timezone_set("Africa/Nairobi");
 if(isset($_POST['submit'])){
     $check = getimagesize($_FILES["post_image"]["tmp_name"]);
     $target_file=basename($_FILES["post_image"]["name"]);
@@ -35,7 +34,7 @@ if(isset($_POST['submit'])){
         header("Location: ./add_post.php?err");
         exit();
     } else {
-        $query="INSERT INTO posts(category, title, body, author, post_image, author_id) VALUES ('$category','$title','$body','$author','$dst','$author_id')";
+        $query="INSERT INTO posts(category, title, body, author, time, post_image, author_id) VALUES ('$category','$title','$date','$body','$author','$dst','$author_id')";
         $insert_row=$db->insert($query);
         header("Location: ./posts.php?added");
     }
