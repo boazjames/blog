@@ -17,6 +17,7 @@ function formatTime($date) {
 }
 
 function timeAgo($timestamp) {
+    date_default_timezone_set("Africa/Nairobi");
     $time_ago= strtotime($timestamp);
     $current_time=time();
     $time_diff=$current_time-$time_ago;
