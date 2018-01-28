@@ -4,9 +4,9 @@
 require ('./processors/paginator.php');
 
 $host = 'localhost';
-$user = 'kiddnati_boaz';
-$pass = '1996@bjo';
-$db = 'kiddnati_blog';
+$user = 'root';
+$pass = '';
+$db = 'blog';
 
 $mysqli = new mysqli($host, $user, $pass, $db);
 if(isset($_GET['category'])){

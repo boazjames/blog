@@ -1,5 +1,6 @@
 <?php if (!empty($_POST)) : ?>
     <?php
+    session_start();
     include '../config/config.php';
     include '../libraries/Database.php';
     include '../helpers/format_helper.php';

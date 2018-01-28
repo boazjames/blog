@@ -12,10 +12,6 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <title>Kidd Nation</title>
-
-        <!-- Google font -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
-
         <!-- Bootstrap -->
         <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 
@@ -26,33 +22,21 @@
         <!-- Magnific Popup -->
         <link type="text/css" rel="stylesheet" href="css/magnific-popup.css" />
 
-        <link type="text/css" rel="stylesheet" href="css/vegas.css" />
-
         <!-- Font Awesome Icon -->
         <link rel="stylesheet" href="css/font-awesome.min.css">
 
         <!-- Custom stlylesheet -->
         <link type="text/css" rel="stylesheet" href="css/style.css" />
 
-
-        <link rel="stylesheet" type="text/css" href="css/style4.css" />
-        <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-                <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-                <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
     </head>
 
     <body>
         <!-- Header -->
         <header id="home">
             <!-- Background Image -->
-            <!--<div class="bg-img">
+            <div class="bg-img" style="background-image: url('img/IMG2.png');">
                     <div class="overlay"></div>
-            </div>-->
+            </div>
             <!-- /Background Image -->
 
             <!-- Nav -->
@@ -65,7 +49,7 @@
                         <div class="navbar-brand">
                             <a href="index.php">
                                 <img class="logo" src="img/logo-dark1.png" alt="logo">
-                                <img class="logo-alt" src="img/logo-dark1.png" alt="logo">
+                                <img class="logo-alt" src="img/logo3.png" alt="logo">
                             </a>
                         </div>
                         <!-- /Logo -->
@@ -96,16 +80,7 @@
                 </div>
             </nav>
             <!-- /Nav -->
-
-
-            <ul class="cb-slideshow">
-                <li><span>Image 01</span><div><h3>entertainment</h3></div></li>
-                <li><span>Image 02</span><div><h3>dreams</h3></div></li>
-                <li><span>Image 03</span><div><h3>talent</h3></div></li>
-                <li><span>Image 04</span><div><h3>career</h3></div></li>
-                <li><span>Image 05</span><div><h3>life skills</h3></div></li>
-                <li><span>Image 06</span><div><h3>education</h3></div></li>
-            </ul>
+            
             <!-- home wrapper -->
             <div class="home-wrapper">
                 <div class="container">

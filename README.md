@@ -1,2 +1,0 @@
-__My Project__
-
