@@ -63,8 +63,8 @@
                       </div>
                       <?php elseif(isset($_GET['success'])) : ?>
                       <div class="alert alert-success">
-                          You successfully signed up.
-                          <p>You can now <a href="login_blog.php">Log in</a></p>
+                          You successfully signed up. Click the link sent to your email to activate your account.
+                          <!--<p>You can now <a href="login_blog.php">Log in</a></p>-->
                       </div>
                       <?php endif; ?>
                       <?php if(isset($_SESSION['first_input'])) : ?>
