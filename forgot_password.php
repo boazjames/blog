@@ -1,7 +1,22 @@
+<?php include 'config/config.php'; ?>
+<?php include 'libraries/Database.php'; ?>
 <?php
-if(isset($_GET['id'])){
-    $id=$_GET['id'];
+$db=new Database();
+if(isset($_POST['submit'])){
+    $email= mysqli_real_escape_string($db->link,$_POST['email']);
+    if(!empty($email)){
+        $query="SELECT * FROM users WHERE user_email='$email'";
+        $select_email=$db->select($query);
+        if($select_email){
+            header("Location: ./forgot_password.php?success");
+        }else{
+            header("Location: ./forgot_password.php?incorrectEmail");
+        }
+    }else {
+        header("Location: ./forgot_password.php?empty");
+    }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,47 +45,36 @@ if(isset($_GET['id'])){
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-md-offset-4">
-              <form id="login" method="post" action="./processors/log-in-blog.php" class="well">
-                  <?php if(isset($_GET['uerror'])) : ?>
+              <form id="login" method="post" action="./forgot_password.php" class="well">
+                  <?php if(isset($_GET['incorrectEmail'])) : ?>
                   <div class="alert alert-danger">
-                      Username doesn't exist
+                      Email doesn't exist
                   </div>
-                  <?php elseif(isset($_GET['perror'])) : ?>
+                  <?php elseif(isset($_GET['empty'])) : ?>
                   <div class="alert alert-danger">
-                      Incorrect password
+                      Please fill the email field
                   </div>
-                  <?php elseif(isset($_GET['inactive'])) : ?>
-                  <div class="alert alert-danger">
-                      Please activate your account from your email
+                  <?php elseif(isset($_GET['success'])) : ?>
+                  <div class="alert alert-success">
+                      Click on the link sent to your email to change password.
                   </div>
                   <?php endif; ?>
                   <div class="form-group">
                     <label>Email Address</label>
-                    <input type="text" class="form-control" name="uid" placeholder="Enter Email" required>
+                    <input type="text" class="form-control" name="email" placeholder="Enter Email" required>
                   </div>
-                  <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="pwd" placeholder="Password" required>
-                  </div>
-                  
-                  <button type="submit" id="return" class="btn btn-default btn-block" name="submit">Login</button>
+                  <button type="submit" id="return" class="btn btn-default btn-block" name="submit">Reset</button>
                   <br>
-                  <p class=""><a href="./forgot_password.php">Forgot password?</a></p>
-                  <p><strong>OR</strong></p>
-                  <p>Don't have an account? <a href="signup.php">Signup here.</a></p>
+                  <p>Go back to <a href="login_blog.php">log in </a>page.</p>
               </form>
               
           </div>
         </div>
       </div>
     </section>
-          <p class="text-center"><a href="blog.php"class="btn btn-default" id="return">Return to Blog Page</a></p>
+          <p class="text-center"><a href="blog.php" class="btn btn-default" id="return">Return to Blog Page</a></p>
   
       </div>
-  <script>
-     CKEDITOR.replace( 'editor1' );
- </script>
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
