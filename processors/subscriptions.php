@@ -8,7 +8,7 @@
     $subscriptions=$db->select($query);
     ?>
 <?php if($subscriptions) : ?>
-<div class="alert alert-warning" id="subscriptions_div">
+<div class="alert-warning" id="subscriptions_div">
     You had subscribed
 </div>
 <?php else : ?>
@@ -16,7 +16,7 @@
 $query="INSERT INTO subscriptions(email) VALUES('$email')";
 $insert_row=$db->insert($query);
 ?>
-<div class="alert alert-success" id="subscriptions_div">
+<div class="alert-success" id="subscriptions_div">
     You have successfully subscribed
 </div>
 <?php endif; ?>

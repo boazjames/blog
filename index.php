@@ -75,11 +75,19 @@ $posts = $db->select($query);
     });
 </script>
 <script>
+    $('#alert').hide();
+    function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
     var original_disp = document.getElementById('subcriptions_div');
     var inner_content = original_disp.innerHTML;
     $('form#subscribe').submit(function (e) {
         e.preventDefault();
-        $.ajax({
+        var sub=$('#subscription_input');
+        var sub_val=sub.val();
+        if(isEmail(sub_val)==true){
+            $.ajax({
             url: "./processors/subscriptions.php",
             method: "POST",
             data: $(this).serialize(),
@@ -93,5 +101,27 @@ $posts = $db->select($query);
                 }, 5000);
             }
         });
+        }else{
+            $('#alert').show();
+            setTimeout(function () {
+                    $('#alert').hide();
+                }, 5000);
+        }
+        
+        /*
+        $.ajax({
+            url: "./processors/subscriptions.php",
+            method: "POST",
+            data: $(this).serialize(),
+            dataType: 'html',
+            success: function (data) {
+                $('#subcriptions_div').html(data);
+                setTimeout(function () {
+                    $('#subcriptions_div').html(inner_content);
+                    $('#subscription_input').attr("disabled","disabled");
+                    $('#eemail').attr("disabled","disabled");
+                }, 5000);
+            }
+        });*/
     });
 </script>

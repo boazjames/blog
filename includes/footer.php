@@ -20,13 +20,14 @@
                                    <div id="subcriptions_div">
                                    <form method="post" id="subscribe">
                                             <div class="input-group input-group-sm">
-                                                <input type="text" class="form-control" placeholder="email" name="subscription_input" id="subscription_input">
+                                                <input type="text" class="form-control" placeholder="email" name="subscription_input" id="subscription_input" required>
                         <span class="input-group-btn">
                             <button type="submit" name="submit" id="eemail" class="btn btn-default btn-xs">Subscribe</button>
                         </span>
                     </div>
 					</form>
                                    </div>
+                                   <div id="alert" class="alert-danger">Please enter a valid email.</div>
 				</div>
                                 </div>
 				<!-- /contact form -->
@@ -125,7 +126,6 @@
 	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
-        <script type="text/javascript" src="js/jascript.js"></script>
 </body>
 
 </html>
