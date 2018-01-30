@@ -72,12 +72,9 @@
     </section>
 
     <footer id="footer">
-      <p>Copyright KiddNation, &copy; 2017</p>
+        <p>Copyright KiddNation254, &copy; <?php echo date("Y"); ?></p>
     </footer>
 
-  <script>
-     CKEDITOR.replace( 'editor1' );
- </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

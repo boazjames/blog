@@ -63,7 +63,13 @@ $posts = $db->select($query);
 
 <?php include 'includes/footer.php'; ?>
 <script>
-
+$('iframe').attr("width","800");
+$('iframe').attr("height","365");
+var width=screen.availWidth;
+if(width<=767){
+    $('iframe').attr("width","315");
+$('iframe').attr("height","150");
+}
 </script>
 <script>
     $("a#get_started").on('click', function (e) {
@@ -107,21 +113,5 @@ $posts = $db->select($query);
                     $('#alert').hide();
                 }, 5000);
         }
-        
-        /*
-        $.ajax({
-            url: "./processors/subscriptions.php",
-            method: "POST",
-            data: $(this).serialize(),
-            dataType: 'html',
-            success: function (data) {
-                $('#subcriptions_div').html(data);
-                setTimeout(function () {
-                    $('#subcriptions_div').html(inner_content);
-                    $('#subscription_input').attr("disabled","disabled");
-                    $('#eemail').attr("disabled","disabled");
-                }, 5000);
-            }
-        });*/
     });
 </script>

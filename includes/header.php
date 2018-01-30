@@ -2,6 +2,11 @@
 <?php include 'libraries/Database.php'; ?>
 <?php session_start(); ?>
 <?php include 'helpers/format_helper.php'; ?>
+<?php
+$db=new Database();
+$query="SELECT * FROM videos ORDER BY id DESC LIMIT 1";
+$video=$db->select($query);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -244,10 +249,12 @@
                         <h2 class="title">Latest Video</h2>
                     </div>
                     <!-- /Section header -->
-
+                    <?php if($row=$video->fetch_assoc()) : ?>
                     <div>
-                        <!--<iframe width="70%" height="350" src="https://www.youtube.com/embed/gxsvhDN45HU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
+                        <?php echo $row['iframe']; ?>
+                        <h4 id="video_title"><b><?php echo $row['title']; ?></b></h4>
                     </div>
+                    <?php endif; ?>
                 </div>
                 <!-- /Row -->
 
