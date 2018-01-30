@@ -116,7 +116,7 @@
                     <label>Confirm password</label>
                     <input type="password" class="form-control" name="Cpwd" placeholder="Confirm password" required>
                   </div>
-                  <span><input type="checkbox" required> I accept KiddNation's terms and conditions</span>
+                  
                   <button type="submit" class="btn btn-default btn-block" name="submit" id="return">Sign Up</button>
                   <br>
                   <p class="text-center"><strong>OR</strong></p>

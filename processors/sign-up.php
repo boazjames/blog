@@ -67,13 +67,13 @@ after you have activated your account by pressing the url below.
 Username: ' . $uid . '
 ------------------------
  
-Please click this link to activate your account:
+Please click the link below to activate your account:
 http://www.kiddnation254.com/verify.php?email=' . $email . '&hash=' . $hash . '
  
 '."If clicking the link above doesn't work, copy and paste the url into a
 new browser window."; // Our message above including the link
 
-                                    $headers = 'From:info@kiddnation254.com' . "\r\n"; // Set from headers
+                                    $headers = 'From: KiddNation254 <support@kiddnation254.com>' . "\r\n"; // Set from headers
                                     mail($to, $subject, $message, $headers); // Send our email
                                     header("Location: ../signup.php?success");
                                     session_unset($_SESSION['first_input']);

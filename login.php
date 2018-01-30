@@ -58,7 +58,7 @@ if(isset($_GET['id'])){
                   
                   <button type="submit" id="return" class="btn btn-default btn-block" name="submit">Login</button>
                   <br>
-                  <p class=""><a href="#">Forgot password?</a></p>
+                  <p class=""><a href="./forgot_password.php">Forgot password?</a></p>
                   <p><strong>OR</strong></p>
                   <p>Don't have an account? <a href="signup.php">Signup here.</a></p>
               </form>

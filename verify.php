@@ -35,12 +35,12 @@
         <?php if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])) : ?>
     <?php 
     $db=new Database();
-    $email = mysql_escape_string($_GET['email']);
-    $hash = mysql_escape_string($_GET['hash']);
+    $email = mysqli_real_escape_string($db->link,$_GET['email']);
+    $hash = mysqli_real_escape_string($db->link,$_GET['hash']);
     $query="SELECT user_email, active, hash FROM users WHERE user_email='".$email."' AND hash='".$hash."' AND active='0'";
     $verify=$db->select($query);
     ?>
-    <?php// if($verify) : ?>
+    <?php if($verify) : ?>
     <?php
     $query="UPDATE users SET active='1' WHERE user_email='".$email."' AND hash='".$hash."' AND active='0'";
     $update_row=$db->update($query);
@@ -48,7 +48,7 @@
     <div id="verify_div" class="alert alert-success">
         You've successfully verified your account.You can now <a href="./login_blog.php">Log in</a>. 
     </div>
-    <?php// endif; ?>
+    <?php endif; ?>
     <?php else : ?>
     <div id="verify_div" class=" alert alert-danger">
         The activation link is either invalid or you had activated your account. <a href="./login_blog.php">Log in</a>
