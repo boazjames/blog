@@ -245,8 +245,8 @@
                     </div>
                     <!-- /Section header -->
 
-                    <div id="latest_video">
-
+                    <div>
+                        <!--<iframe width="70%" height="350" src="https://www.youtube.com/embed/gxsvhDN45HU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
                     </div>
                 </div>
                 <!-- /Row -->
