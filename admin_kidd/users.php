@@ -15,6 +15,8 @@
     $query = "SELECT * FROM posts";
     $posts = $db->select($query);
     $total_posts = $posts->num_rows;
+    $videos = $db->select($query);
+    $total_videos = $videos->num_rows;
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -26,7 +28,6 @@
             <!-- Bootstrap core CSS -->
             <link href="css/bootstrap.min.css" rel="stylesheet">
             <link href="css/style.css" rel="stylesheet">
-            <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
         </head>
         <body>
 
@@ -39,7 +40,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand"><strong>KiddNation</strong></a>
+                        <a class="navbar-brand"><strong>KiddNation254</strong></a>
                     </div>
                     <div id="navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
@@ -48,6 +49,7 @@
                             <li><a href="add_category.php">Add Category</a></li>
                             <li><a href="#">Add Video</a></li>
                             <li><a href="../blog.php">Visit Blog</a></li>
+                            <li><a href="../index.php">Visit Home</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a>Welcome, <?php echo $_SESSION['ua_uid']; ?></a></li>
@@ -87,7 +89,7 @@
 
                                 <a href="posts.php" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge"><?php echo $total_posts; ?></span></a>
                                 <a href="categories.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge"><?php echo $total_categories; ?></span></a>
-                                <a href="#" class="list-group-item"><span class="glyphicon glyphicon-film" aria-hidden="true"></span> Videos <span class="badge">5</span></a>
+                                <a href="videos.php" class="list-group-item"><span class="glyphicon glyphicon-film" aria-hidden="true"></span> Videos <span class="badge"><?php echo $total_videos; ?></span></a>
                                 <a href="#" class="list-group-item active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge"><?php echo $total_users; ?></span></a>
                             </div>
 
@@ -159,7 +161,7 @@
             </section>
 
             <footer id="footer">
-                <p>Copyright KiddNation, &COPY; <?php echo date('Y'); ?></p>
+                <p>Copyright KiddNation254, &COPY; <?php echo date('Y'); ?></p>
             </footer>
 
              <!-- Modal delete confirm -->

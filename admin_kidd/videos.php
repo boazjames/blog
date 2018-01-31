@@ -41,7 +41,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand"><strong>KiddNation</strong></a>
+                        <a class="navbar-brand"><strong>KiddNation254</strong></a>
                     </div>
                     <div id="navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
@@ -50,6 +50,7 @@
                             <li><a href="./add_category.php">Add Category</a></li>
                             <li><a href="./add_video.php">Add Video</a></li>
                             <li><a href="../blog.php">Visit Blog</a></li>
+                            <li><a href="../index.php">Visit Home</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a>Welcome, <?php echo $_SESSION['ua_uid'] ?></a></li>
@@ -114,10 +115,10 @@
                                     <h3 class="panel-title">Videos</h3>
                                 </div>
                                 <?php if (isset($_GET['added'])) : ?>
-                                <script> 
-                                    $('#add_success').modal('show');
-                                location.replace('categories.php');
-                                </script>
+                                <script>
+                alert('Video added successfully');
+                location.replace("videos.php");
+                </script>
                                 
                                 <?php endif; ?>
                                
@@ -185,24 +186,6 @@
 
             
 
-            <!-- modal delete success -->
-            <div id="edit_success" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-
-                        <div class="modal-body">
-                            <div><strong>You successfully edited the category</strong></div> 
-                        </div>
-                        <div id="btns">
-                            <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Ok</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div> 
-            
             
             <footer id="footer">
                 <p>Copyright KiddNation254, &COPY; <?php echo date('Y'); ?></p>

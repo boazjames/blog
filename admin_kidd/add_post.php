@@ -62,7 +62,6 @@ $db=new Database();
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
   </head>
   <body>
 
@@ -75,15 +74,16 @@ $db=new Database();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand"><strong>KiddNation</strong></a>
+            <a class="navbar-brand"><strong>KiddNation254</strong></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
               <li><a href="index.php">Dashboard</a></li>
             <li class="active"><a href="add_post.php">Add Post</a></li>
             <li><a href="add_category.php">Add Category</a></li>
-             <li><a href="#">Add Video</a></li>
+            <li><a href="add_video.php">Add Video</a></li>
             <li><a href="../blog.php">Visit Blog</a></li>
+            <li><a href="../index.php">Visit Home</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a>Welcome, <?php echo $_SESSION['ua_uid']; ?></a></li>
@@ -150,7 +150,7 @@ $db=new Database();
           </div>
       
        <footer id="footer">
-        <p>Copyright KiddNation, &COPY; 2017</p>
+           <p>Copyright KiddNation254, &COPY; <?php echo date('Y'); ?></p>
     </footer>
 
     <!-- Modals -->

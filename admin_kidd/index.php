@@ -18,6 +18,8 @@ $posts=$db->select($query);
          $query="SELECT * FROM posts";
         $posts=$db->select($query);
         $total_posts=$posts->num_rows;
+        $videos = $db->select($query);
+    $total_videos = $videos->num_rows;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,15 +44,16 @@ $posts=$db->select($query);
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand"><strong>KiddNation</strong></a>
+            <a class="navbar-brand"><strong>KiddNation254</strong></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Dashboard</a></li>
             <li><a href="add_post.php">Add Post</a></li>
             <li><a href="add_category.php">Add Category</a></li>
-             <li><a href="#">Add Video</a></li>
+            <li><a href="add_video.php">Add Video</a></li>
              <li><a href="../blog.php">Visit Blog</a></li>
+             <li><a href="../index.php">Visit Home</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a>Welcome, <?php echo $_SESSION['ua_uid']; ?></a></li>
@@ -90,7 +93,7 @@ $posts=$db->select($query);
               
               <a href="posts.php" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge"><?php echo $total_posts; ?></span></a>
               <a href="categories.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge"><?php echo $total_categories; ?></span></a>
-              <a href="#" class="list-group-item"><span class="glyphicon glyphicon-film" aria-hidden="true"></span> Videos <span class="badge">5</span></a>
+              <a href="videos.php" class="list-group-item"><span class="glyphicon glyphicon-film" aria-hidden="true"></span> Videos <span class="badge"><?php echo $total_videos; ?></span></a>
               <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge"><?php echo $total_users; ?></span></a>
             </div>
 
@@ -130,7 +133,7 @@ $posts=$db->select($query);
                 </div>
                   <div class="col-md-3">
                   <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-film" aria-hidden="true"></span> 12</h2>
+                    <h2><span class="glyphicon glyphicon-film" aria-hidden="true"></span> <?php echo $total_videos; ?></h2>
                     <h4>Videos</h4>
                   </div>
                 </div>
@@ -197,7 +200,7 @@ $posts=$db->select($query);
     </section>
 
     <footer id="footer">
-      <p>Copyright KiddNation, &copy; 2017</p>
+        <p>Copyright KiddNation254, &copy; <?php echo date('Y'); ?></p>
     </footer>
 
     <!-- Modals -->

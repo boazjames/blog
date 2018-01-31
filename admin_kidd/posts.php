@@ -17,6 +17,8 @@
     $total_users = $users->num_rows;
     $query = "SELECT * FROM categories";
     $categories = $db->select($query);
+    $videos = $db->select($query);
+    $total_videos = $videos->num_rows;
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -41,15 +43,16 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand"><strong>KiddNation</strong></a>
+                        <a class="navbar-brand"><strong>KiddNation254</strong></a>
                     </div>
                     <div id="navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="index.php">Dashboard</a></li>
                             <li><a href="add_post.php">Add Post</a></li>
                             <li><a href="add_category.php">Add Category</a></li>
-                            <li><a href="#">Add Video</a></li>
+                            <li><a href="add_video.php">Add Video</a></li>
                             <li><a href="../blog.php">Visit Blog</a></li>
+                            <li><a href="../index.php">Visit Home</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a>Welcome, <?php echo $_SESSION['ua_uid'] ?></a></li>
@@ -89,7 +92,7 @@
 
                                 <a href="posts.php" class="list-group-item active"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge"><?php echo $total_posts; ?></span></a>
                                 <a href="categories.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge"><?php echo $total_categories; ?></span></a>
-                                <a href="#" class="list-group-item"><span class="glyphicon glyphicon-film" aria-hidden="true"></span> Videos <span class="badge">5</span></a>
+                                <a href="videos.php" class="list-group-item"><span class="glyphicon glyphicon-film" aria-hidden="true"></span> Videos <span class="badge"><?php echo $total_videos; ?></span></a>
                                 <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge"><?php echo $total_users; ?></span></a>
                             </div>
 
@@ -254,7 +257,7 @@
             
             
             <footer id="footer">
-                <p>Copyright KiddNation, &COPY; 2017</p>
+                <p>Copyright KiddNation254, &COPY; <?php echo date('Y'); ?></p>
             </footer>
 
             <!-- Modals -->
