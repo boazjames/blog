@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <?php if(isset($_SESSION['ua_id'])) : ?>
 <?php
-$date_default_timezone_set("Africa/Nairobi");
+date_default_timezone_set("Africa/Nairobi");
 if(isset($_POST['submit'])){
     $check = getimagesize($_FILES["post_image"]["tmp_name"]);
     $target_file=basename($_FILES["post_image"]["name"]);
@@ -22,6 +22,8 @@ if(isset($_POST['submit'])){
     $author= mysqli_real_escape_string($db->link,$_POST['author']);
     $author_id= mysqli_real_escape_string($db->link,$_POST['author_id']);
     //$tags= mysqli_real_escape_string($db->link,$_POST['tags']);
+    
+    $date = date('Y-m-d H:i:s');
     $v1= rand(1111, 9999);
     $v2=rand(1111, 9999);
     $v3=$v1.$v2;
@@ -34,7 +36,7 @@ if(isset($_POST['submit'])){
         header("Location: ./add_post.php?err");
         exit();
     } else {
-        $query="INSERT INTO posts(category, title, body, author, time, post_image, author_id) VALUES ('$category','$title','$date','$body','$author','$dst','$author_id')";
+        $query="INSERT INTO posts(category, title, body, author, time, post_image, author_id) VALUES ('$category','$title','$body','$author','$date','$dst','$author_id')";
         $insert_row=$db->insert($query);
         header("Location: ./posts.php?added");
     }
