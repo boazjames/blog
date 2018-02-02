@@ -1,4 +1,6 @@
 <?php include 'includes/blog-header.php'; ?>
+<?php if(isset($_GET['id'])) :?>
+<?php if(!$_GET['id']==null): ?>
 
 <?php
 if (isset($_GET['id'])) {
@@ -219,6 +221,12 @@ if ($comments) {
                     <?php endif; ?>
                 </div>
             </main>
+            <?php else: ?>
+            <p>An error was encountered while loading the post. Visit <a href="./blog.php">blog page</a></p>
+            <?php endif; ?>
+            <?php else : ?>
+            <p>An error was encountered while loading the post. Visit <a href="./blog.php">blog page</a></p>
+            <?php endif; ?>
             <?php include 'includes/blog-footer.php'; ?>
             <script>
                 $('#search_result').hide();

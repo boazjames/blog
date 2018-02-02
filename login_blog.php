@@ -45,8 +45,8 @@ if(isset($_GET['id'])){
                   </div>
                   <?php endif; ?>
                   <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="text" class="form-control" name="uid" placeholder="Enter Email" required>
+                    <label>Email Address/Username</label>
+                    <input type="text" class="form-control" name="uid" placeholder="Enter Email or Username" required>
                   </div>
                   <div class="form-group">
                     <label>Password</label>

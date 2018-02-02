@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
     $_SESSION['uid_input'] = $_POST['uid'];
     $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
     $Cpwd = mysqli_real_escape_string($conn, $_POST['Cpwd']);
+    $user_img="./user_images/user.jpg";
     if (empty($first) || empty($last) || empty($email) || empty($uid) || empty($pwd)) {
         header("Location: ../signup.php?empty");
         exit();
@@ -52,7 +53,7 @@ if (isset($_POST['submit'])) {
                                     exit();
                                 } else {
                                     $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-                                    $sql = "INSERT INTO users(user_first,user_last,user_email,user_uid,user_pwd,hash) VALUES('$first','$last','$email','$uid','$hashedPwd','$hash')";
+                                    $sql = "INSERT INTO users(user_first,user_last,user_email,user_uid,user_pwd,user_image,hash) VALUES('$first','$last','$email','$uid','$hashedPwd','$user_img','$hash')";
                                     $result = mysqli_query($conn, $sql);
                                     $to = $email; // Send email to our user
                                     $subject = 'Signup | Verification'; // Give the email a subject 

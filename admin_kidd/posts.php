@@ -17,6 +17,7 @@
     $total_users = $users->num_rows;
     $query = "SELECT * FROM categories";
     $categories = $db->select($query);
+    $query="SELECT * FROM videos";
     $videos = $db->select($query);
     $total_videos = $videos->num_rows;
     ?>

@@ -18,6 +18,7 @@ $posts=$db->select($query);
          $query="SELECT * FROM posts";
         $posts=$db->select($query);
         $total_posts=$posts->num_rows;
+        $query="SELECT * FROM videos";
         $videos = $db->select($query);
     $total_videos = $videos->num_rows;
 ?>
