@@ -113,10 +113,10 @@ $categories = $db->select($query);
 
                 <!-- footer follow -->
                 <ul class="footer-follow">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="https://www.facebook.com/KiddNation254"><i class="fa fa-facebook"></i></a></li>
+                    <li><a><i class="fa fa-twitter"></i></a></li>
+                    <li><a><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCKlNL5m1pnZ5C_erWy6mJ6w"><i class="fa fa-youtube"></i></a></li>
                 </ul>
                 <!-- /footer follow -->
 
