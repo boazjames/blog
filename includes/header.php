@@ -261,7 +261,7 @@ $video=$db->select($query);
                     <!-- /Section header -->
                     <?php if($row=$video->fetch_assoc()) : ?>
                     <div>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $row['iframe']; ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe width="1280" height="720" src="https://www.youtube.com/embed/<?php echo $row['iframe']; ?>?VQ=HD720" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         
                         <h4 id="video_title"><b><?php echo $row['title']; ?></b></h4>
                     </div>
