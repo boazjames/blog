@@ -4,7 +4,7 @@ $response = array();
 
 //$server_ip = gethostbyname(gethostname());
 
-$dst = "../../kidd_nation/user_images/";
+$dst = "../../user_images/";
 
 
 if (!empty($_FILES['file']['name']) && !empty($_POST['userId'])) {

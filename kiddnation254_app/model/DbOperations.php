@@ -13,24 +13,25 @@ class DbOperations
         $this->db = $db;
     }
 
-    public function createUser($username, $email, $phone, $pwd, $confirmPwd)
+    public function createUser($username, $email, $phone, $pwd, $confirmPwd, $code)
     {
-        if($this->validateEmail($email)){
+        if ($this->validateEmail($email)) {
             return 3;
-        }elseif ($this->validatePhone($phone)){
+        } elseif ($this->validatePhone($phone)) {
             return 4;
-        }elseif ($this->validatePassword($pwd,$confirmPwd)){
+        } elseif ($this->validatePassword($pwd, $confirmPwd)) {
             return 5;
-        }elseif ($this->doesUserExist($username, $email, $phone)) {
+        } elseif ($this->doesUserExist($username, $email, $phone)) {
             return 0;
         } else {
             $pwd = password_hash($pwd, PASSWORD_DEFAULT);
-            $smt = "INSERT INTO users(user_uid,user_email, phone_number, user_pwd) VALUES (:username, :email, :phone, :pwd)";
+            $smt = "INSERT INTO users(user_uid,user_email, phone_number, user_pwd, verification_code) VALUES (:username, :email, :phone, :pwd, :code)";
             $smt = $this->db->insert($smt);
             $smt->bindParam(":username", $username);
             $smt->bindParam(":email", $email);
             $smt->bindParam(":phone", $phone);
             $smt->bindParam(":pwd", $pwd);
+            $smt->bindParam(":code", $code);
 
             if ($smt->execute()) {
                 return 2;
@@ -93,11 +94,13 @@ class DbOperations
         return strlen($password) < 8 && $password != $confirmPassword;
     }
 
-    private function validatePhone($phone){
+    private function validatePhone($phone)
+    {
         return strlen($phone) != 10;
     }
 
-    public function showPost($id){
+    public function showPost($id)
+    {
         $smt = "SELECT * FROM posts WHERE id=:id";
         $smt = $this->db->select($smt);
         $smt->bindParam(':id', $id);
@@ -105,35 +108,38 @@ class DbOperations
         return $smt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function showMoreComments($postId, $start, $limit){
-        $smt = "SELECT * FROM comments WHERE post_id=:postId ORDER BY id DESC LIMIT ".$start.", ".$limit;
+    public function showMoreComments($postId, $start, $limit)
+    {
+        $smt = "SELECT * FROM comments WHERE post_id=:postId ORDER BY id DESC LIMIT " . $start . ", " . $limit;
         $smt = $this->db->select($smt);
         $smt->bindParam(":postId", $postId);
         $smt->execute();
 
-        while ( $row = $smt->fetch(PDO::FETCH_OBJ) ) {
-            $results[]  = $row;
+        while ($row = $smt->fetch(PDO::FETCH_OBJ)) {
+            $results[] = $row;
 
         }
 
-        return (object) $results;
+        return (object)$results;
     }
 
-    public function showFewComments($postId, $limit){
-        $smt = "SELECT * FROM comments WHERE post_id=:postId ORDER BY id DESC LIMIT ".$limit;
+    public function showFewComments($postId, $limit)
+    {
+        $smt = "SELECT * FROM comments WHERE post_id=:postId ORDER BY id DESC LIMIT " . $limit;
         $smt = $this->db->select($smt);
         $smt->bindParam(":postId", $postId);
         $smt->execute();
 
-        while ( $row = $smt->fetch(PDO::FETCH_OBJ) ) {
-            $results[]  = $row;
+        while ($row = $smt->fetch(PDO::FETCH_OBJ)) {
+            $results[] = $row;
 
         }
 
-        return (object) $results;
+        return (object)$results;
     }
 
-    public function commentsCount($postId){
+    public function commentsCount($postId)
+    {
         $smt = "SELECT * FROM comments WHERE post_id=:postId";
         $smt = $this->db->select($smt);
         $smt->bindParam(":postId", $postId);
@@ -141,8 +147,9 @@ class DbOperations
         return $smt->rowCount();
     }
 
-    public function insertComment($post_id, $user_id, $date, $username, $user_img, $comment){
-        $smt = "INSERT INTO comments (post_id, user_id, time, user_uid, user_image, comment)".
+    public function insertComment($post_id, $user_id, $date, $username, $user_img, $comment)
+    {
+        $smt = "INSERT INTO comments (post_id, user_id, time, user_uid, user_image, comment)" .
             " VALUES (:post_id, :user_id, :time, :username, :user_img, :comment)";
         $smt = $this->db->insert($smt);
         $smt->bindParam(":post_id", $post_id);
@@ -152,7 +159,7 @@ class DbOperations
         $smt->bindParam(":user_img", $user_img);
         $smt->bindParam(":comment", $comment);
 
-        if($smt->execute()){
+        if ($smt->execute()) {
             return true;
         }
 
@@ -170,152 +177,242 @@ class DbOperations
 
     }
 
-    public function showFewPosts($limit){
-        $smt = "SELECT * FROM posts ORDER BY id DESC LIMIT ".$limit;
+    public function showFewPosts($limit)
+    {
+        $smt = "SELECT * FROM posts ORDER BY id DESC LIMIT " . $limit;
         $smt = $this->db->select($smt);
         $smt->execute();
 
-        while ( $row = $smt->fetch(PDO::FETCH_OBJ) ) {
-            $results[]  = $row;
+        while ($row = $smt->fetch(PDO::FETCH_OBJ)) {
+            $results[] = $row;
 
         }
 
-        return (object) $results;
+        return (object)$results;
     }
 
-    public function showMorePosts($start, $limit){
-        $smt = "SELECT * FROM posts ORDER BY id DESC LIMIT ".$start.", ".$limit;
+    public function showMorePosts($start, $limit)
+    {
+        $smt = "SELECT * FROM posts ORDER BY id DESC LIMIT " . $start . ", " . $limit;
         $smt = $this->db->select($smt);
         $smt->execute();
 
-        while ( $row = $smt->fetch(PDO::FETCH_OBJ) ) {
-            $results[]  = $row;
+        while ($row = $smt->fetch(PDO::FETCH_OBJ)) {
+            $results[] = $row;
 
         }
 
-        return (object) $results;
+        return (object)$results;
     }
 
-    public function postsCount(){
+    public function postsCount()
+    {
         $smt = "SELECT * FROM posts";
         $smt = $this->db->select($smt);
         $smt->execute();
         return $smt->rowCount();
     }
 
-    public function showFewVideos($limit){
-        $smt = "SELECT * FROM videos ORDER BY id DESC LIMIT ".$limit;
+    public function showFewVideos($limit)
+    {
+        $smt = "SELECT * FROM videos ORDER BY id DESC LIMIT " . $limit;
         $smt = $this->db->select($smt);
         $smt->execute();
 
-        while ( $row = $smt->fetch(PDO::FETCH_OBJ) ) {
-            $results[]  = $row;
+        while ($row = $smt->fetch(PDO::FETCH_OBJ)) {
+            $results[] = $row;
 
         }
 
-        return (object) $results;
+        return (object)$results;
     }
 
-    public function showMoreVideos($start, $limit){
-        $smt = "SELECT * FROM videos ORDER BY id DESC LIMIT ".$start.", ".$limit;
+    public function showMoreVideos($start, $limit)
+    {
+        $smt = "SELECT * FROM videos ORDER BY id DESC LIMIT " . $start . ", " . $limit;
         $smt = $this->db->select($smt);
         $smt->execute();
 
-        while ( $row = $smt->fetch(PDO::FETCH_OBJ) ) {
-            $results[]  = $row;
+        while ($row = $smt->fetch(PDO::FETCH_OBJ)) {
+            $results[] = $row;
 
         }
 
-        return (object) $results;
+        return (object)$results;
     }
 
-    public function videosCount(){
+    public function videosCount()
+    {
         $smt = "SELECT * FROM videos";
         $smt = $this->db->select($smt);
         $smt->execute();
         return $smt->rowCount();
     }
 
-    public function showLatestQuote(){
+    public function showLatestQuote()
+    {
         $smt = "SELECT * FROM quotes ORDER BY id DESC LIMIT 1";
         $smt = $this->db->select($smt);
         $smt->execute();
         return $smt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function updateUserImageLink($user_id, $image_link){
+    public function updateUserImageLink($user_id, $image_link)
+    {
         $smt = "UPDATE users SET user_image=:image_link WHERE user_id=:user_id";
         $smt = $this->db->select($smt);
         $smt->bindParam(":user_id", $user_id);
         $smt->bindParam(":image_link", $image_link);
-        if($smt->execute())
+        if ($smt->execute()){
             return true;
+        }else{
+            return false;
+        }
+
     }
 
-    public function searchFewPosts($search_term, $limit){
-        $smt = "SELECT * FROM posts WHERE title LIKE '%".$search_term."%' ORDER BY id DESC LIMIT ".$limit;
+    public function searchFewPosts($search_term, $limit)
+    {
+        $smt = "SELECT * FROM posts WHERE title LIKE '%" . $search_term . "%' ORDER BY id DESC LIMIT " . $limit;
         $smt = $this->db->select($smt);
         $smt->execute();
 
-        while ( $row = $smt->fetch(PDO::FETCH_OBJ) ) {
-            $results[]  = $row;
+        while ($row = $smt->fetch(PDO::FETCH_OBJ)) {
+            $results[] = $row;
 
         }
 
-        return (object) $results;
+        return (object)$results;
     }
 
-    public function searchMorePosts($search_term, $start, $limit){
-        $smt = "SELECT * FROM posts WHERE title LIKE '%".$search_term."%' ORDER BY id DESC LIMIT ".$start.", ".$limit;
+    public function searchMorePosts($search_term, $start, $limit)
+    {
+        $smt = "SELECT * FROM posts WHERE title LIKE '%" . $search_term . "%' ORDER BY id DESC LIMIT " . $start . ", " . $limit;
         $smt = $this->db->select($smt);
         $smt->execute();
 
-        while ( $row = $smt->fetch(PDO::FETCH_OBJ) ) {
-            $results[]  = $row;
+        while ($row = $smt->fetch(PDO::FETCH_OBJ)) {
+            $results[] = $row;
 
         }
 
-        return (object) $results;
+        return (object)$results;
     }
 
-    public function searchPostsCount($search_term){
-        $smt = "SELECT * FROM posts WHERE title LIKE '%".$search_term."%'";
+    public function searchPostsCount($search_term)
+    {
+        $smt = "SELECT * FROM posts WHERE title LIKE '%" . $search_term . "%'";
         $smt = $this->db->select($smt);
         $smt->execute();
         return $smt->rowCount();
     }
 
-    public function searchFewVideos($search_term, $limit){
-        $smt = "SELECT * FROM videos WHERE title LIKE '%".$search_term."%' ORDER BY id DESC LIMIT ".$limit;
+    public function searchFewVideos($search_term, $limit)
+    {
+        $smt = "SELECT * FROM videos WHERE title LIKE '%" . $search_term . "%' ORDER BY id DESC LIMIT " . $limit;
         $smt = $this->db->select($smt);
         $smt->execute();
 
-        while ( $row = $smt->fetch(PDO::FETCH_OBJ) ) {
-            $results[]  = $row;
+        while ($row = $smt->fetch(PDO::FETCH_OBJ)) {
+            $results[] = $row;
 
         }
 
-        return (object) $results;
+        return (object)$results;
     }
 
-    public function searchMoreVideos($search_term, $start, $limit){
-        $smt = "SELECT * FROM videos WHERE title LIKE '%".$search_term."%' ORDER BY id DESC LIMIT ".$start.", ".$limit;
+    public function searchMoreVideos($search_term, $start, $limit)
+    {
+        $smt = "SELECT * FROM videos WHERE title LIKE '%" . $search_term . "%' ORDER BY id DESC LIMIT " . $start . ", " . $limit;
         $smt = $this->db->select($smt);
         $smt->execute();
 
-        while ( $row = $smt->fetch(PDO::FETCH_OBJ) ) {
-            $results[]  = $row;
+        while ($row = $smt->fetch(PDO::FETCH_OBJ)) {
+            $results[] = $row;
 
         }
 
-        return (object) $results;
+        return (object)$results;
     }
 
-    public function searchVideosCount($search_term){
-        $smt = "SELECT * FROM videos WHERE title LIKE '%".$search_term."%'";
+    public function searchVideosCount($search_term)
+    {
+        $smt = "SELECT * FROM videos WHERE title LIKE '%" . $search_term . "%'";
         $smt = $this->db->select($smt);
         $smt->execute();
         return $smt->rowCount();
+    }
+
+    public function verifyCode($email, $code)
+    {
+        $smt = "SELECT * FROM users WHERE user_email=:email AND verification_code=:code";
+        $smt = $this->db->select($smt);
+        $smt->bindParam(":code", $code);
+        $smt->bindParam(":email", $email);
+        $smt->execute();
+
+        return $smt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function activateUser($email)
+    {
+        $smt = "UPDATE users SET active=1 WHERE user_email=:email";
+        $smt = $this->db->update($smt);
+        $smt->bindParam(":email", $email);
+        if ($smt->execute()) {
+            return true;
+        }
+    }
+
+    public function doesEmailExist($email)
+    {
+        $smt = "SELECT * FROM users WHERE user_email=:email";
+        $smt = $this->db->select($smt);
+        $smt->bindParam(":email", $email);
+        $smt->execute();
+
+        return $smt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function updatePasswordResetCode($email, $code)
+    {
+        $smt = "UPDATE users SET pwd_reset_code=:code WHERE user_email=:email";
+        $smt = $this->db->update($smt);
+        $smt->bindParam(":email", $email);
+        $smt->bindParam(":code", $code);
+
+        if ($smt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function verifyPasswordResetCode($email, $code)
+    {
+        $smt = "SELECT * FROM users WHERE user_email=:email AND pwd_reset_code=:code";
+        $smt = $this->db->select($smt);
+        $smt->bindParam(":code", $code);
+        $smt->bindParam(":email", $email);
+        $smt->execute();
+
+        return $smt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function resetPassword($email, $password)
+    {
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $smt = "UPDATE users SET user_pwd=:password WHERE user_email=:email";
+        $smt = $this->db->update($smt);
+        $smt->bindParam(":password", $password);
+        $smt->bindParam(":email", $email);
+
+        if ($smt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

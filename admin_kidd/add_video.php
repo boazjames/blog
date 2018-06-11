@@ -7,11 +7,11 @@
 if(isset($_POST['submit'])){
     $db=new Database();
     $title=mysqli_real_escape_string($db->link,$_POST['title']);
-    $iframe= mysqli_real_escape_string($db->link,$_POST['iframe']);
+    $code= mysqli_real_escape_string($db->link,$_POST['code']);
     if(empty($title) || empty($iframe)){
         header("Location: ./add_video.php?err");
     } else {
-        $query="INSERT INTO videos (iframe,title) VALUES ('$iframe','$title')";
+        $query="INSERT INTO videos (code,title) VALUES ('$code','$title')";
         $insert_row=$db->insert($query);
         header("Location: ./videos.php?added");
     }
@@ -74,7 +74,7 @@ if(isset($_POST['submit'])){
         <label>Title</label>
         <input name="title" type="text" class="form-control" placeholder="Enter title" required>
         <label>Video code</label>
-        <input name="iframe" type="text" class="form-control" placeholder="Enter code" required>
+        <input name="code" type="text" class="form-control" placeholder="Enter code" required>
     </div> 
     <div>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">

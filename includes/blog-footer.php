@@ -61,7 +61,7 @@ $categories = $db->select($query);
                 <!-- single post -->
                 <div class="widget-post">
                     <a href="blog-single.php?id=<?php echo $row['id']; ?>">
-                        <img id="post_img_small" src="<?php echo $row['post_image']; ?>" alt=""> <?php echo $row['title']; ?>
+                        <img id="post_img_small" src="./post_images/<?php echo $row['post_image']; ?>" alt=""> <?php echo $row['title']; ?>
                     </a>
                     <ul class="blog-meta">
                         <li><?php echo formatTime($row['time']); ?></li>

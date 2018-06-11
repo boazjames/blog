@@ -8,8 +8,8 @@
     $v2 = rand(1111, 9999);
     $v3 = $v1 . $v2;
     $fnm = $_FILES['img_upload']['name'];
-    $dst = "../user_images/" . $v3 . $fnm;
-    $dst1="./user_images/" . $v3 . $fnm;
+    $dst = "../user_images/KiddNation254_" . $v3 . $fnm;
+    $dst1="KiddNation254_" . $v3 . $fnm;
     
     
     move_uploaded_file($_FILES['img_upload']['tmp_name'], $dst);
@@ -19,7 +19,7 @@
     $query = "SELECT user_image FROM users WHERE user_id=" . $user_id;
     $user_img = $db->select($query)->fetch_assoc();
     ?>
-<li id="li_img"><img id="user_nav_img" class="img-responsive img-circle" src="<?php echo $user_img['user_image']; ?>"></li>
+<li id="li_img"><img id="user_nav_img" class="img-responsive img-circle" src="./user_images/<?php echo $user_img['user_image']; ?>"></li>
 <script>
                 $(document).ready(function(){
                     $('a#upload').click(function(e){

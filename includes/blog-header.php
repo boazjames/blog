@@ -87,7 +87,7 @@ if (isset($_GET['id'])) {
                             }
                             ?>
                         <?php if($user_img['user_image']) : ?>
-                        <li id="li_img"><img id="user_nav_img" class="img-responsive img-circle" src="<?php echo $user_img['user_image']; ?>"></li>
+                        <li id="li_img"><img id="user_nav_img" class="img-responsive img-circle" src="./user_images/<?php echo $user_img['user_image']; ?>"></li>
                         <?php else : ?>
                         <li id="li_img"><img id="user_nav_img" class="img-responsive img-circle" src="./user_images/user.jpg"></li>
                         <?php endif; ?>

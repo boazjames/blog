@@ -7,11 +7,10 @@ if (isset($_POST['submit'])) {
     include 'libraries/Database.php';
     include 'helpers/format_helper.php';
     $db = new Database();
-    $id = mysqli_real_escape_string($db->link, $_POST['id']);
     $uid = mysqli_real_escape_string($db->link, $_POST['uid']);
     $pwd = mysqli_real_escape_string($db->link, $_POST['pwd']);
     if (empty($uid) || empty($pwd)) {
-        header("Location: ./login.php?empty&id=$id");
+        header("Location: ./login.php?empty");
         exit();
     } else {
         $query = "SELECT * FROM users WHERE user_uid='$uid' AND admin='1' OR user_email='$uid' AND admin='1'";

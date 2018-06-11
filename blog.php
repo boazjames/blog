@@ -2,13 +2,14 @@
 
 <?php
 require ('./processors/paginator.php');
+require_once "./config/config.php";
 
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$db = 'blog';
+$host=DB_HOST;
+$db_user=DB_USER;
+$db_password=DB_PASS;
+$db_name=DB_NAME;
 
-$mysqli = new mysqli($host, $user, $pass, $db);
+$mysqli = new mysqli($host, $db_user, $db_password, $db_name);
 if(isset($_GET['category'])){
     $category= mysqli_real_escape_string($mysqli,$_GET['category']);
     $query = "SELECT * FROM posts WHERE category=" . $category . " ORDER BY id DESC";
@@ -125,7 +126,7 @@ $post = $db->select($query);
                             <!-- single post -->
                             <div class="widget-post">
                                 <a href="blog-single.php?id=<?php echo $row['id']; ?>">
-                                    <img id="post_img_small" src="<?php echo $row['post_image']; ?>" alt=""> <?php echo $row['title']; ?>
+                                    <img id="post_img_small" src="./post_images/<?php echo $row['post_image']; ?>" alt=""> <?php echo $row['title']; ?>
                                 </a>
                                 <ul class="blog-meta">
                                     <li><?php echo formatTime($row['time']); ?></li>
@@ -166,7 +167,7 @@ $post = $db->select($query);
                     <div class="col-md-9" id="blog-main">
                         <div class="blog">
                             <div class="blog-img">
-                                <img id="post_img" class="img-responsive" src="<?php echo $row['post_image']; ?>" alt="">
+                                <img id="post_img" class="img-responsive" src="./post_images/<?php echo $row['post_image']; ?>" alt="">
                             </div>
                             <div class="blog-content">
                                 <ul class="blog-meta">
@@ -251,7 +252,7 @@ $post = $db->select($query);
                             <!-- single post -->
                             <div class="widget-post">
                                 <a href="blog-single.php?id=<?php echo $row['id']; ?>">
-                                    <img id="post_img_small" src="<?php echo $row['post_image']; ?>" alt=""> <?php echo $row['title']; ?>
+                                    <img id="post_img_small" src="./post_images/<?php echo $row['post_image']; ?>" alt=""> <?php echo $row['title']; ?>
                                 </a>
                                 <ul class="blog-meta">
                                     <li><?php echo formatTime($row['time']); ?></li>
@@ -338,7 +339,7 @@ $post = $db->select($query);
                             <!-- single post -->
                             <div class="widget-post">
                                 <a href="blog-single.php?id=<?php echo $row['id']; ?>">
-                                    <img id="post_img_small" src="<?php echo $row['post_image']; ?>" alt=""> <?php echo $row['title']; ?>
+                                    <img id="post_img_small" src="./post_images/<?php echo $row['post_image']; ?>" alt=""> <?php echo $row['title']; ?>
                                 </a>
                                 <ul class="blog-meta">
                                     <li><?php echo formatTime($row['time']); ?></li>

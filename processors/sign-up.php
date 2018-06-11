@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     $_SESSION['uid_input'] = $_POST['uid'];
     $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
     $Cpwd = mysqli_real_escape_string($conn, $_POST['Cpwd']);
-    $user_img="./user_images/user.jpg";
+    $user_img="user.jpg";
     if (empty($first) || empty($last) || empty($email) || empty($uid) || empty($pwd)) {
         header("Location: ../signup.php?empty");
         exit();

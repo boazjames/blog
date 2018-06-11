@@ -35,11 +35,10 @@
             <?php endwhile; ?>
         </select>
     </div>
-    <!--<div class="form-group">
-        <label>Tags</label>
-        <input name="tags" type="text" class="form-control" placeholder="Enter Tags" value="<?php echo $post['tags']; ?>">
-    </div>--> 
     </div>
 <?php else : ?>
 
 <?php endif; ?>
+
+<script src="ckeditor/ckeditor.js"></script>
+<script src="js/custom.js"></script>

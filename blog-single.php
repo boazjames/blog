@@ -46,7 +46,7 @@ if ($comments) {
             <main id="main" class="col-md-9">
                 <div class="blog">
                     <div class="blog-img">
-                        <img class="img-responsive" id="post_img" src="<?php echo $post['post_image']; ?>" alt="">
+                        <img class="img-responsive" id="post_img" src="./post_images/<?php echo $post['post_image']; ?>" alt="">
                     </div>
                     <div class="blog-content">
                         <ul class="blog-meta">
@@ -57,6 +57,33 @@ if ($comments) {
                             <?php endif; ?>
                         </ul>
                         <h3><?php echo $post['title']; ?></h3>
+
+                        <?php
+                        $query = "SELECT * FROM users WHERE user_id=" . $post['author_id'];
+                        $author = $db->select($query)->fetch_assoc();
+                        ?>
+                        <!-- blog author -->
+                        <div class="blog-author">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img id="author_img" class="media-object" src="./user_images/<?php echo $author['user_image']; ?>" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <div class="media-heading">
+                                        <h3><?php echo $author['user_uid']; ?></h3>
+                                        <div class="author-social">
+                                            <a href="#"><i class="fa fa-facebook"></i></a>
+                                            <a href="#"><i class="fa fa-twitter"></i></a>
+                                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                                            <a href="#"><i class="fa fa-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                    <p><?php echo $author['user_description']; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /blog author -->
+
                         <?php echo $post['body']; ?>
                         <!-- blog tags --><!--
                         <div class="blog-tags">
@@ -74,31 +101,7 @@ if ($comments) {
                     <!-- blog tags -->
 
                     <!-- blog tags -->
-                    <?php
-                    $query = "SELECT * FROM users WHERE user_id=" . $post['author_id'];
-                    $author = $db->select($query)->fetch_assoc();
-                    ?>
-                    <!-- blog author -->
-                    <div class="blog-author">
-                        <div class="media">
-                            <div class="media-left">
-                                <img id="author_img" class="media-object" src="<?php echo $author['user_image']; ?>" alt="">
-                            </div>
-                            <div class="media-body">
-                                <div class="media-heading">
-                                    <h3><?php echo $author['user_uid']; ?></h3>
-                                    <div class="author-social">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                                        <a href="#"><i class="fa fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                                <p><?php echo $author['user_description']; ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /blog author -->
+
 
                     <!-- blog comments -->
                     <div class="blog-comments" id="comments">
@@ -120,7 +123,7 @@ if ($comments) {
                                     ?>
                                     <div class="media">
                                         <div class="media-left">
-                                            <img id="user_img" class="media-object" src="<?php echo $row['user_image']; ?>" alt="">
+                                            <img id="user_img" class="media-object" src="./user_images/<?php echo $row['user_image']; ?>" alt="">
                                         </div>
                                         <div class="media-body">
                                             <h4 class="media-heading"><?php echo $row['user_uid']; ?>

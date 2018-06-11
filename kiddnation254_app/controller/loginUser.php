@@ -4,7 +4,7 @@ require_once '../model/DbOperations.php';
 $response = array();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (!empty($_POST['username']) && !empty($_POST['password'])) {
+    if (!empty($_POST['username']) || !empty($_POST['password'])) {
         $db = new DbOperations;
 
         if ($db->userLogin($_POST['username'], $_POST['password'])){
