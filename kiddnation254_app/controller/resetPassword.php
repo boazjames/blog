@@ -12,7 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($db->resetPassword($email, $password)) {
             $response['error'] = false;
-            $response['message'] = "Password reset was successful. You can now login";
+            $user = $db->getUser($email);
+            $response['id'] = $user->user_id;
+            $response['username'] = $user->user_uid;
+            $response['email'] = $user->user_email;
+            $response['phone'] = ($user->phone_number == null) ? "not set": $user->phone_number;
+            $response['image_link'] = $user->user_image;
         } else {
             $response['error'] = true;
             $response['message'] = 'cannot reset password';

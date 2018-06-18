@@ -45,7 +45,7 @@ class DbOperations
 
     public function userLogin($username, $password)
     {
-        $smt = "SELECT * FROM users WHERE user_uid=:username";
+        $smt = "SELECT * FROM users WHERE user_uid=:username OR user_email=:username";
         $smt = $this->db->select($smt);
         $smt->bindParam(":username", $username);
         $smt->bindColumn("user_pwd", $pwd);
@@ -62,7 +62,7 @@ class DbOperations
 
     public function getUser($username)
     {
-        $smt = "SELECT * FROM users WHERE user_uid=:username";
+        $smt = "SELECT * FROM users WHERE user_uid=:username OR user_email=:username";
         $smt = $this->db->select($smt);
         $smt->bindParam(":username", $username);
         $smt->execute();
